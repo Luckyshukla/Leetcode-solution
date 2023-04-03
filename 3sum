@@ -1,0 +1,23 @@
+nums =[-1,0,1,2,-1,-4]
+
+nums.sort()
+n =len(nums)
+tarrget =0
+for i in range(n):
+    if(i==0 or nums[i]!=nums[i-1]):
+        j = i+1
+        k = n-1
+        tar = tarrget -nums[i]
+        while(j<k):
+            if(nums[j]+nums[k]==tar):
+                print(nums[i],nums[j],nums[k])
+                while(j<k and nums[j]==nums[j+1]):
+                    j+=1
+                while(j<k and nums[k]==nums[k-1]):
+                    k-=1
+                j+=1
+                k-=1
+            if(nums[j]+nums[k]<tar):
+                j+=1
+            else:
+                k-=1
