@@ -1,23 +1,22 @@
-nums =[-1,0,1,2,-1,-4]
-
-nums.sort()
-n =len(nums)
-tarrget =0
-for i in range(n):
-    if(i==0 or nums[i]!=nums[i-1]):
-        j = i+1
-        k = n-1
-        tar = tarrget -nums[i]
-        while(j<k):
-            if(nums[j]+nums[k]==tar):
-                print(nums[i],nums[j],nums[k])
-                while(j<k and nums[j]==nums[j+1]):
-                    j+=1
-                while(j<k and nums[k]==nums[k-1]):
-                    k-=1
-                j+=1
-                k-=1
-            if(nums[j]+nums[k]<tar):
-                j+=1
-            else:
-                k-=1
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        ans = []
+        n =len(nums)
+        tarrget =0
+        for i in range(n-2):
+            val =nums[i]
+            l =i+1
+            r =n-1
+            while(l<r):
+                csum = val+nums[l]+nums[r]
+                if(csum==0):
+                    if([val,nums[l],nums[r]] not in ans):
+                        ans.append([val,nums[l],nums[r]])
+                    l+=1
+                    r-=1
+                elif(csum<0):
+                    l+=1
+                else:
+                    r-=1
+        return ans
